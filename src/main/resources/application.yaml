@@ -1,0 +1,25 @@
+spring:
+    application:
+        name: demo
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/bootcamp
+        username: postgres
+        password: postgres
+        driver-class-name: org.postgresql.Driver
+
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+            ddl-auto: none
+        show-sql: true
+        properties:
+            hibernate:
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+                format_sql: true
+                default_schema: public
+    liquibase:
+        enabled: true
+        change-log: classpath:db/changelog/db.changelog-master.yaml

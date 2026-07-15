@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202607141350
+      author: Lucas
+      changes:
+        - createTable:
+            tableName: documento_carro
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_documento_carro
+                    nullable: false
+
+              - column:
+                  name: renavam
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: numero_documento
+                  type: varchar(255)
+                  constraints:
+                    nullable: false

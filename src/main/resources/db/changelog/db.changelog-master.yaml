@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/migrations/2210023830-create-table-dono.yaml
+
+  - include:
+      file: db/changelog/migrations/2210023829-create-table-car.yaml
+
+  - include:
+      file: db/changelog/migrations/2210023831-create-table-documento-carro.yaml
+
+  - include:
+      file: db/changelog/migrations/2219923892-create-table-acessorios.yaml
+
+
+

@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202607142140
+      author: Lucas
+      changes:
+        - createTable:
+            tableName: acessorio
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: nome
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: descricao
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
