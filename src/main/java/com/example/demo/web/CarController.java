@@ -3,9 +3,11 @@ package com.example.demo.web;
 import com.example.demo.model.Car;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.service.CarService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,11 +29,16 @@ public class CarController {
     public ResponseEntity<Car> findById (@PathVariable Long id){
         return ResponseEntity.ok(carService.findById(id));
     }
-    @PostMapping
+    @PostMapping(
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
     @ApiResponse(responseCode = "200", description = "Carro criado com sucesso")
-    public ResponseEntity<Car> create( @RequestBody Car car){
-        return ResponseEntity.ok(carService.createCar(car));
+    public ResponseEntity<Car> create(
+            @RequestPart("car") Car car,
+            @RequestPart(value = "file", required = false) MultipartFile file) {
 
+        return ResponseEntity.ok(carService.createCar(car, file));
     }
     @PutMapping("/{id}")
     public ResponseEntity<Car>   update(@PathVariable Long id, @RequestBody Car car){
@@ -46,5 +53,6 @@ public class CarController {
 
 
     public ResponseEntity<List<Car>> findAll(String s) {
+        return null;
     }
 }

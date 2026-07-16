@@ -1,15 +1,20 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/migrations/2210023830-create-table-dono.yaml
-
+      file: migrations/2210023830-create-table-dono.yaml
+      relativeToChangelogFile: true
   - include:
-      file: db/changelog/migrations/2210023829-create-table-car.yaml
-
+      file: migrations/2210023829-create-table-car.yaml
+      relativeToChangelogFile: true
   - include:
-      file: db/changelog/migrations/2210023831-create-table-documento-carro.yaml
-
+      file: migrations/2210023831-create-table-documento-carro.yaml
+      relativeToChangelogFile: true
   - include:
-      file: db/changelog/migrations/2219923892-create-table-acessorios.yaml
+      file: migrations/2219923892-create-table-acessorios.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/202605151939-update-cars.yaml
+      relativeToChangelogFile: true
+
 
 
 

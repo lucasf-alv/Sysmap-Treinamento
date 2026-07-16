@@ -1,12 +1,21 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "car")
+@Getter
+@Setter
+@RequiredArgsConstructor
+@AllArgsConstructor
+
 public class Car{
     @Id
     @GeneratedValue( strategy =  GenerationType.IDENTITY)
@@ -31,55 +40,11 @@ public class Car{
             inverseJoinColumns = @JoinColumn(name = "acessorio_id")
     )
     private List<Acessorio> acessorios = new ArrayList<>();
+    @Column(name="photo_id")
+    private String photo_id;
 
-    public long getId() {
-        return id;
-    }
+    @Column(name= "photo_url", length = 1000)
+    private String photo_url;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getAno() {
-        return ano;
-    }
-
-    public void setAno(String ano) {
-        this.ano = ano;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public Car( String marca, String modelo, String ano, String placa) {
-        this.marca = marca;
-        this.modelo = modelo;
-        this.ano = ano;
-        this.placa = placa;
-    }
-
-    public Car() {
-    }
 }
 
