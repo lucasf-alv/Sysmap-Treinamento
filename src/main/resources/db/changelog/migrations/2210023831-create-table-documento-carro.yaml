@@ -1,28 +1,19 @@
 databaseChangeLog:
   - changeSet:
-      id: 202607141350
+      id: 202607170001
       author: Lucas
       changes:
-        - createTable:
+
+        - addColumn:
             tableName: documento_carro
             columns:
               - column:
-                  name: id
-                  type: bigint
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    primaryKeyName: pk_documento_carro
-                    nullable: false
+                  name: carro_id
+                  type: BIGINT
 
-              - column:
-                  name: renavam
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-
-              - column:
-                  name: numero_documento
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: documento_carro
+            baseColumnNames: carro_id
+            constraintName: fk_documento_carro_car
+            referencedTableName: car
+            referencedColumnNames: id

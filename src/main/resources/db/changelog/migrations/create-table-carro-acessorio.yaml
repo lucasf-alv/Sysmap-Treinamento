@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202607170002
+      author: Lucas
+      changes:
+
+        - createTable:
+            tableName: carro_acessorio
+            columns:
+
+              - column:
+                  name: carro_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: acessorio_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+
+        - addPrimaryKey:
+            tableName: carro_acessorio
+            columnNames: carro_id, acessorio_id
+            constraintName: pk_carro_acessorio
+
+
+        - addForeignKeyConstraint:
+            baseTableName: carro_acessorio
+            baseColumnNames: carro_id
+            constraintName: fk_carro_acessorio_carro
+            referencedTableName: car
+            referencedColumnNames: id
+
+
+        - addForeignKeyConstraint:
+            baseTableName: carro_acessorio
+            baseColumnNames: acessorio_id
+            constraintName: fk_carro_acessorio_acessorio
+            referencedTableName: acessorio
+            referencedColumnNames: id

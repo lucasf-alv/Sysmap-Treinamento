@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Dono {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +24,7 @@ public class Dono {
     private String nome;
     @Column(name = "cpf" , nullable = false, unique = true)
     private String cpf;
+    @JsonIgnore
     @OneToMany(mappedBy = "dono", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Car> carros = new ArrayList<>();
 

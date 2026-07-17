@@ -14,6 +14,13 @@ databaseChangeLog:
   - include:
       file: migrations/202605151939-update-cars.yaml
       relativeToChangelogFile: true
+  - include:
+      file: migrations/20261606-create-table-users.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/create-table-carro-acessorio.yaml
+      relativeToChangelogFile: true
+
 
 
 

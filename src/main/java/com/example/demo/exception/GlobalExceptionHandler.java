@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDateTime;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -40,6 +42,17 @@ public class GlobalExceptionHandler {
         );
 
         return new ResponseEntity<>(apiError, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ApiError> handleUnauthorized(UnauthorizedException ex, HttpServletRequest request){
+        ApiError e = new ApiError(
+                LocalDateTime.now(),
+                HttpStatus.UNAUTHORIZED.value(),
+                "Unauthorized",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+        return new ResponseEntity<>(e, HttpStatus.UNAUTHORIZED);
     }
 }
 

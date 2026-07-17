@@ -32,3 +32,7 @@ aws:
         endpoint: http://localhost:4566
         access-key: test
         secret-key: test
+app:
+    jwt:
+        secret: minha-chave-super-secreta-com-mais-de-32-caracteres
+        expirations-ms: 3600000

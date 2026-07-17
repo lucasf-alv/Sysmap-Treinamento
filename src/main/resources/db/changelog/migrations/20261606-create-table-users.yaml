@@ -1,0 +1,88 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202607142140
+      author: Lucas
+
+      changes:
+
+        - createTable:
+            tableName: perfis
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: nome
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: descricao
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: password_hash
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: perfil_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+
+        - addForeignKeyConstraint:
+            constraintName: fk_users_perfil
+            baseTableName: users
+            baseColumnNames: perfil_id
+            referencedTableName: perfis
+            referencedColumnNames: id
+
+
+        - sql:
+            dbms: postgresql
+            splitStatements: false
+            sql: |
+              INSERT INTO perfis (nome, descricao)
+              SELECT 'USER', 'Usuário padrão'
+              WHERE NOT EXISTS (
+                  SELECT 1 
+                  FROM perfis 
+                  WHERE nome = 'USER'
+              );
+
+              INSERT INTO perfis (nome, descricao)
+              SELECT 'ADMIN', 'Administrador do sistema'
+              WHERE NOT EXISTS (
+                  SELECT 1 
+                  FROM perfis 
+                  WHERE nome = 'ADMIN'
+              );
+
+
